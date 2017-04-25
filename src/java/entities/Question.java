@@ -40,8 +40,6 @@ public class Question implements Serializable {
     private String motCle;
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     private List<Reponse> lesReponses;
-    @ManyToOne
-    private Questionnaire questionnaire;
     @OneToMany(mappedBy = "question")
     private List<Mesquestions> listMesquestions;
     
