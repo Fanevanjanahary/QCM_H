@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author Proprietaire
+ */
+@Entity
+@Table(name="MESQUESTIONS")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Mesquestions.findAll", query = "SELECT m FROM Mesquestions m")}
+)
+public class Mesquestions implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_mesquestions;
+    @ManyToOne
+    private Questionnaire questionnaire;
+    @ManyToOne
+    private Question question;
+
+    public Long getId_mesquestions() {
+        return id_mesquestions;
+    }
+
+    public void setId_mesquestions(Long id_mesquestions) {
+        this.id_mesquestions = id_mesquestions;
+    }
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+    
+    
+}

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,12 +46,14 @@ public class Questionnaire implements Serializable {
     private Date dateModification;
     private String mode;
     private  String motCle;
-    @OneToMany(mappedBy="questionnaire")
+    @OneToMany(mappedBy="questionnaire", fetch = FetchType.EAGER)
     private List<Question> lesQuestions;
-    @OneToMany(mappedBy = "questionnaire")
+    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY)
     private List<Notes> lesNotes;
     @ManyToOne
     private Utilisateur utilisateur;
+    @OneToMany(mappedBy = "questionnaire")
+    private List<Mesquestions> listMesquestions;
 
     public Long getId() {
         return id;
