@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entitys;
+package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,21 +23,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ANDRIAMIADANTSOA
  */
 @Entity
-@Table(name = "REPONSE")
+@Table(name = "UTILISATEUR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Reponse.findAll", query = "SELECT r FROM Reponse  r")}
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur  u")}
 )
-public class Reponse implements Serializable {
+public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Question question;
-    private String textIntro;
-    Boolean statut;
+    private String nomUtilisateur;
+    private String motDepasse;
+    @OneToOne
+    private Personne personne;
+    @ManyToMany
+    private List<Questionnaire> questionnaires;
 
     public Long getId() {
         return id;
@@ -45,32 +49,25 @@ public class Reponse implements Serializable {
         this.id = id;
     }
 
-    public Reponse() {
+    public Utilisateur() {
     }
 
-    public Question getQuestion() {
-        return question;
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setNomUtilisateur(String nomUtilisateur) {
+        this.nomUtilisateur = nomUtilisateur;
     }
 
-    public String getTextIntro() {
-        return textIntro;
+    public String getMotDepasse() {
+        return motDepasse;
     }
 
-    public void setTextIntro(String textIntro) {
-        this.textIntro = textIntro;
+    public void setMotDepasse(String motDepasse) {
+        this.motDepasse = motDepasse;
     }
-
-    public Boolean getStatut() {
-        return statut;
-    }
-
-    public void setStatut(Boolean statut) {
-        this.statut = statut;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -82,15 +79,16 @@ public class Reponse implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Reponse)) {
+        if (!(object instanceof Utilisateur)) {
             return false;
         }
-        Reponse other = (Reponse) object;
+        Utilisateur other = (Utilisateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
+    
     
 }

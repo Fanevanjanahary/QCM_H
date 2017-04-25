@@ -3,43 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entitys;
+package entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author ANDRIAMIADANTSOA
  */
 @Entity
-@Table(name = "UTILISATEUR")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur  u")}
-)
-public class Utilisateur implements Serializable {
+public class Notes implements Serializable {
+
+    @ManyToMany(mappedBy = "note")
+    private List<Questionnaire> questionnaires;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nomUtilisateur;
-    private String motDepasse;
-    @OneToOne
-    private Personne personne;
-    @ManyToMany
-    private List<Questionnaire> questionnaires;
+    private Integer note;
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @ManyToOne
+    private Utilisateur utilisateur;
+    @ManyToOne
+    private Questionnaire questionnaire;
 
     public Long getId() {
         return id;
@@ -48,26 +46,6 @@ public class Utilisateur implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Utilisateur() {
-    }
-
-    public String getNomUtilisateur() {
-        return nomUtilisateur;
-    }
-
-    public void setNomUtilisateur(String nomUtilisateur) {
-        this.nomUtilisateur = nomUtilisateur;
-    }
-
-    public String getMotDepasse() {
-        return motDepasse;
-    }
-
-    public void setMotDepasse(String motDepasse) {
-        this.motDepasse = motDepasse;
-    }
-    
 
     @Override
     public int hashCode() {
@@ -79,16 +57,19 @@ public class Utilisateur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utilisateur)) {
+        if (!(object instanceof Notes)) {
             return false;
         }
-        Utilisateur other = (Utilisateur) object;
+        Notes other = (Notes) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "entitys.Notes[ id=" + id + " ]";
+    }
     
 }
