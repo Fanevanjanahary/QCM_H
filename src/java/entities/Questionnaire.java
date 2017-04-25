@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,18 +39,18 @@ public class Questionnaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Temporal(TemporalType.DATE)
-    private Date dateDeCreation;
+    private Date dateCreation;
     private String textIntro;
     @Temporal(TemporalType.DATE)
-    private Date dateDeModification;
+    private Date dateModification;
     private String mode;
     private  String motCle;
-    @OneToMany
-    private List<Question> lesQuestion;
-    @ManyToMany
-    private List<Notes> note;
-    @ManyToMany(mappedBy = "questionnaires")
-    private List<Utilisateur> listeUser;
+    @OneToMany(mappedBy="questionnaire")
+    private List<Question> lesQuestions;
+    @OneToMany(mappedBy = "questionnaire")
+    private List<Notes> lesNotes;
+    @ManyToOne
+    private Utilisateur utilisateur;
 
     public Long getId() {
         return id;
@@ -62,12 +63,12 @@ public class Questionnaire implements Serializable {
     public Questionnaire() {
     }
 
-    public Date getDateDeCreation() {
-        return dateDeCreation;
+    public Date getDateCreation() {
+        return dateCreation;
     }
 
-    public void setDateDeCreation(Date dateDeCreation) {
-        this.dateDeCreation = dateDeCreation;
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
     public String getTextIntro() {
@@ -78,12 +79,12 @@ public class Questionnaire implements Serializable {
         this.textIntro = textIntro;
     }
 
-    public Date getDateDeModification() {
-        return dateDeModification;
+    public Date getDateModification() {
+        return dateModification;
     }
 
-    public void setDateDeModification(Date dateDeModification) {
-        this.dateDeModification = dateDeModification;
+    public void setDateModification(Date dateModification) {
+        this.dateModification = dateModification;
     }
 
     public String getMode() {

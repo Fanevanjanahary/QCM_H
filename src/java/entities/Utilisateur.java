@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -36,10 +37,12 @@ public class Utilisateur implements Serializable {
     private Long id;
     private String nomUtilisateur;
     private String motDepasse;
-    @OneToOne
+    @OneToOne(mappedBy="utilisateur")
     private Personne personne;
-    @ManyToMany
-    private List<Questionnaire> questionnaires;
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Questionnaire> lesQuestionnaires;
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Notes> lesNotes;
 
     public Long getId() {
         return id;

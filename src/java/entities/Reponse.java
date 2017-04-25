@@ -32,9 +32,9 @@ public class Reponse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String textIntro;
     @ManyToOne
     private Question question;
-    private String textIntro;
     Boolean statut;
 
     public Long getId() {

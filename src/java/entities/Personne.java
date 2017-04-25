@@ -34,6 +34,8 @@ public class Personne implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
+    @OneToOne
+    private Utilisateur utilisateur;
     
 
     public Long getId() {
