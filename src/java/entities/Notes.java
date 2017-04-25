@@ -24,9 +24,6 @@ import javax.persistence.TemporalType;
 @Entity
 public class Notes implements Serializable {
 
-    @ManyToMany(mappedBy = "note")
-    private List<Questionnaire> questionnaires;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +42,41 @@ public class Notes implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Notes() {
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
     }
 
     @Override

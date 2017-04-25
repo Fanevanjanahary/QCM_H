@@ -30,18 +30,18 @@ public class Mesquestions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_mesquestions;
+    private Long id;
     @ManyToOne
     private Questionnaire questionnaire;
     @ManyToOne
     private Question question;
 
-    public Long getId_mesquestions() {
-        return id_mesquestions;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_mesquestions(Long id_mesquestions) {
-        this.id_mesquestions = id_mesquestions;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Questionnaire getQuestionnaire() {
@@ -58,6 +58,9 @@ public class Mesquestions implements Serializable {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public Mesquestions() {
     }
     
     

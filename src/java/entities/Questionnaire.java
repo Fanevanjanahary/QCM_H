@@ -46,11 +46,11 @@ public class Questionnaire implements Serializable {
     private Date dateModification;
     private String mode;
     private  String motCle;
-    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "questionnaire",fetch = FetchType.LAZY)
     private List<Notes> lesNotes;
     @ManyToOne
     private Utilisateur utilisateur;
-    @OneToMany(mappedBy="questionnaire", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.EAGER)
     private List<Mesquestions> listMesquestions;
 
     public Long getId() {
