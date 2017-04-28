@@ -38,7 +38,8 @@ public class InitSingleton {
     @PostConstruct
     public void chargerLesDonnees()
     {
-        if(nbrEnregistrement(Personne.class.getSimpleName()) == 0){;
+        if(nbrEnregistrement(Personne.class.getSimpleName()) == 0){
+            
             Personne p1 = new Personne("Richard", "Grin", null);
             Personne p2 = new Personne("ANDRIAMIADANTSOA", "Fanevanjanahary", null);
             Personne p3 = new Personne("ASSANY", "Ylias", null);
@@ -50,7 +51,7 @@ public class InitSingleton {
             Utilisateur u3 = new Utilisateur("andry", "andry", p3, null, null);
             Utilisateur u4 = new Utilisateur("ylias", "ylias", p4, null, null);
             Utilisateur u5 = new Utilisateur("michel", "michel", p5, null, null);
-            
+           
              Question q1_1 = new Question(2, "Combien de couches au moins dans une application Java EE ?", "JEE", null, null);
               Reponse r11_1 = new Reponse("Vrai", q1_1, Boolean.TRUE);
               Reponse r11_2 = new Reponse("Faux", q1_1, Boolean.FALSE);
@@ -66,8 +67,8 @@ public class InitSingleton {
              Question q1_5 = new Question(2, "Que ne peut pas faire un container EJB", "EJB", null, null);
               Reponse r15_1 = new Reponse("La page JSF pour laquelle l’EJB effectue un traitement", q1_5, Boolean.TRUE);
               Reponse r15_2 = new Reponse("L’interface Java implémentée par l’EJB", q1_5, Boolean.FALSE);
-             List<Question> lq1 = new ArrayList<>();
-              lq1.add(q1_1); lq1.add(q1_2); lq1.add(q1_3); lq1.add(q1_4); lq1.add(q1_5);
+             /*List<Question> lq1 = new ArrayList<>();
+              lq1.add(q1_1); lq1.add(q1_2); lq1.add(q1_3); lq1.add(q1_4); lq1.add(q1_5);*/
             Questionnaire q1 = new Questionnaire(new Date(), "Quizz Introduction", null, "Apprentissage", "Quizz/Introduction", u1, null, null);
             
             Mesquestions mq_11 = new Mesquestions(q1, q1_1);
@@ -88,14 +89,15 @@ public class InitSingleton {
              Question q2_3 = new Question(2, "Ce qu’on appelle interface d’un EJB c’est", "EJB/interface", null, null);
               Reponse r23_1 = new Reponse("La page JSF pour laquelle l’EJB effectue un traitement", q2_3, Boolean.TRUE);
               Reponse r23_2 = new Reponse("L’interface Java implémentée par l’EJB", q2_3, Boolean.FALSE);
-             Question q2_4 = new Question(2, "", "", null, null);
-              Reponse r24_1 = new Reponse("La page JSF pour laquelle l’EJB effectue un traitement", q2_4, Boolean.TRUE);
-              Reponse r24_2 = new Reponse("L’interface Java implémentée par l’EJB", q2_4, Boolean.FALSE);
-             Question q2_5 = new Question(2, "", "", null, null);
-              Reponse r25_1 = new Reponse("La page JSF pour laquelle l’EJB effectue un traitement", q2_5, Boolean.TRUE);
-              Reponse r25_2 = new Reponse("L’interface Java implémentée par l’EJB", q2_5, Boolean.FALSE);
-             List<Question> lq2 = new ArrayList<>();
-              lq2.add(q2_1); lq2.add(q2_2); lq2.add(q2_3); lq2.add(q2_4); lq2.add(q2_5);
+             Question q2_4 = new Question(2, "L’annotation pour les EJB qui peuvent être utilisables à distance est", "annotation/EJB", null, null);
+              Reponse r24_1 = new Reponse("@Network", q2_4, Boolean.FALSE);
+              Reponse r24_2 = new Reponse("@Remote", q2_4, Boolean.TRUE);
+              Reponse r24_3 = new Reponse("@Distant", q2_4, Boolean.FALSE);
+             Question q2_5 = new Question(2, "Si on a le choix entre les 2, il vaut mieux utiliser une interface", "interface", null, null);
+              Reponse r25_1 = new Reponse("Locale", q2_5, Boolean.TRUE);
+              Reponse r25_2 = new Reponse("Distante", q2_5, Boolean.FALSE);
+             /*List<Question> lq2 = new ArrayList<>();
+              lq2.add(q2_1); lq2.add(q2_2); lq2.add(q2_3); lq2.add(q2_4); lq2.add(q2_5);*/
             Questionnaire q2 = new Questionnaire(new Date(), "Examen EJB", null, "Examen", "Examen/EJB", u2, null, null);
             
             Mesquestions mq_21 = new Mesquestions(q2, q2_1);
@@ -125,8 +127,8 @@ public class InitSingleton {
               Reponse r35_1 = new Reponse("Dans un backing bean", q3_5, Boolean.FALSE);
               Reponse r35_2 = new Reponse("Dans une page JSF", q3_5, Boolean.TRUE);
               Reponse r35_3 = new Reponse("Dans un EJB", q3_5, Boolean.FALSE);
-             List<Question> lq3 = new ArrayList<>();
-              lq3.add(q3_1); lq3.add(q3_2); lq3.add(q3_3); lq3.add(q3_4); lq3.add(q3_5);              
+             /*List<Question> lq3 = new ArrayList<>();
+              lq3.add(q3_1); lq3.add(q3_2); lq3.add(q3_3); lq3.add(q3_4); lq3.add(q3_5);*/
             Questionnaire q3 = new Questionnaire(new Date(), "Apprentissage JSF", null, "Apprentissage", "Apprentissage/JSF", u3, null, null);
             
             Mesquestions mq_31 = new Mesquestions(q3, q3_1);
@@ -153,8 +155,8 @@ public class InitSingleton {
              Question q4_5 = new Question(2, "Toutes les classes Java annotées avec @Entity sont des entités", "Java/Entity", null, null);
               Reponse r45_1 = new Reponse("Vrai", q4_5, Boolean.TRUE);
               Reponse r45_2 = new Reponse("Faux", q4_5, Boolean.FALSE);
-             List<Question> lq4 = new ArrayList<>();
-              lq4.add(q4_1); lq4.add(q4_2); lq4.add(q4_3); lq4.add(q4_4); lq4.add(q4_5);
+             /*List<Question> lq4 = new ArrayList<>();
+              lq4.add(q4_1); lq4.add(q4_2); lq4.add(q4_3); lq4.add(q4_4); lq4.add(q4_5);*/
             Questionnaire q4 = new Questionnaire(new Date(), "Examen JPA", null, "Examen", "Examen/JPA", u4, null, null);
             
             Mesquestions mq_41 = new Mesquestions(q4, q4_1);
@@ -198,7 +200,7 @@ public class InitSingleton {
         }
         /*
         if(nbrEnregistrement(Utilisateur.class.getName()) == 0){
-            
+            kk
         }
         if(nbrEnregistrement(Questionnaire.class.getName()) == 0){
             
