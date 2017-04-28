@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,11 +48,11 @@ public class Questionnaire implements Serializable {
     private Date dateModification;
     private String mode;
     private  String motCle;
-    @OneToMany(mappedBy = "questionnaire",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Notes> lesNotes;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Utilisateur utilisateur;
-    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Mesquestions> listMesquestions;
 
     public Questionnaire() {

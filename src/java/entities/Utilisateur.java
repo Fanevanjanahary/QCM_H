@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,7 +43,7 @@ public class Utilisateur implements Serializable {
     private List<Questionnaire> lesQuestionnaires;
     @OneToMany(mappedBy = "utilisateur")
     private List<Notes> lesNotes;
-    @OneToOne(mappedBy="utilisateur")
+    @OneToOne(mappedBy="utilisateur",cascade = CascadeType.PERSIST)
     private Personne personne;
 
     public Long getId() {
@@ -86,7 +87,7 @@ public class Utilisateur implements Serializable {
 
     public void setPersonne(Personne personne) {
         this.personne = personne;
-        personne.setUtilisateur(this);
+        // personne.setUtilisateur(this);
     }
     
 
