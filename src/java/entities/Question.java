@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "QUESTION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question  q")}
+    @NamedQuery(name = "Question.count", query = "SELECT count(q) FROM Question q"),
+    @NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q")}
 )
 public class Question implements Serializable {
 
@@ -43,6 +44,15 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question")
     private List<Mesquestions> listMesquestions;
     
+    public Question(){}
+
+    public Question(Integer note, String textIntro, String motCle, List<Reponse> lesReponses, List<Mesquestions> listMesquestions) {
+        this.note = note;
+        this.textIntro = textIntro;
+        this.motCle = motCle;
+        this.lesReponses = lesReponses;
+        this.listMesquestions = listMesquestions;
+    }    
 
     public Long getId() {
         return id;
@@ -50,6 +60,30 @@ public class Question implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
+    }
+
+    public String getTextIntro() {
+        return textIntro;
+    }
+
+    public void setTextIntro(String textIntro) {
+        this.textIntro = textIntro;
+    }
+
+    public String getMotCle() {
+        return motCle;
+    }
+
+    public void setMotCle(String motCle) {
+        this.motCle = motCle;
     }
 
     @Override

@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "REPONSE")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Reponse.count", query = "SELECT count(r) FROM Reponse r"),
     @NamedQuery(name = "Reponse.findAll", query = "SELECT r FROM Reponse  r")}
 )
 public class Reponse implements Serializable {
@@ -36,6 +37,15 @@ public class Reponse implements Serializable {
     @ManyToOne
     private Question question;
     Boolean statut;
+    
+    public Reponse() {
+    }
+
+    public Reponse(String textIntro, Question question, Boolean statut) {
+        this.textIntro = textIntro;
+        this.question = question;
+        this.statut = statut;
+    }
 
     public Long getId() {
         return id;
@@ -45,8 +55,6 @@ public class Reponse implements Serializable {
         this.id = id;
     }
 
-    public Reponse() {
-    }
 
     public Question getQuestion() {
         return question;

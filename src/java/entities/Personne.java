@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "PERSONNE")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Personne.count", query = "SELECT count(p) FROM Personne p"),
     @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne  p")}
 )
 public class Personne implements Serializable {
@@ -36,7 +37,15 @@ public class Personne implements Serializable {
     private String prenom;
     @OneToOne
     private Utilisateur utilisateur;
-    
+
+    public Personne() {
+    }
+
+    public Personne(String nom, String prenom, Utilisateur utilisateur) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.utilisateur = utilisateur;
+    }
 
     public Long getId() {
         return id;
@@ -44,9 +53,6 @@ public class Personne implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Personne() {
     }
 
     public String getNom() {
@@ -63,6 +69,14 @@ public class Personne implements Serializable {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     @Override

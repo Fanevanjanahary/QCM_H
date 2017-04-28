@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "UTILISATEUR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur  u")}
+    @NamedQuery(name = "Utilisateur.count", query = "SELECT count(u) FROM Utilisateur u"),
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")}
 )
 public class Utilisateur implements Serializable {
 
@@ -37,12 +38,12 @@ public class Utilisateur implements Serializable {
     private Long id;
     private String nomUtilisateur;
     private String motDepasse;
-    @OneToOne(mappedBy="utilisateur")
-    private Personne personne;
     @OneToMany(mappedBy = "utilisateur")
     private List<Questionnaire> lesQuestionnaires;
     @OneToMany(mappedBy = "utilisateur")
     private List<Notes> lesNotes;
+    @OneToOne(mappedBy="utilisateur")
+    private Personne personne;
 
     public Long getId() {
         return id;
@@ -53,6 +54,14 @@ public class Utilisateur implements Serializable {
     }
 
     public Utilisateur() {
+    }
+
+    public Utilisateur(String nomUtilisateur, String motDepasse, Personne personne, List<Questionnaire> lesQuestionnaires, List<Notes> lesNotes) {
+        this.nomUtilisateur = nomUtilisateur;
+        this.motDepasse = motDepasse;
+        this.personne = personne;
+        this.lesQuestionnaires = lesQuestionnaires;
+        this.lesNotes = lesNotes;
     }
 
     public String getNomUtilisateur() {
@@ -69,6 +78,15 @@ public class Utilisateur implements Serializable {
 
     public void setMotDepasse(String motDepasse) {
         this.motDepasse = motDepasse;
+    }
+
+    public Personne getPersonne() {
+        return personne;
+    }
+
+    public void setPersonne(Personne personne) {
+        this.personne = personne;
+        personne.setUtilisateur(this);
     }
     
 

@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="MESQUESTIONS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Mesquestions.findAll", query = "SELECT m FROM Mesquestions m")}
+    @NamedQuery(name = "Mesquestions.findAll", query = "SELECT m FROM Mesquestions m"),
+    @NamedQuery(name = "Mesquestions.count", query = "SELECT count(m) FROM Mesquestions m")}
 )
 public class Mesquestions implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -35,6 +36,14 @@ public class Mesquestions implements Serializable {
     private Questionnaire questionnaire;
     @ManyToOne
     private Question question;
+
+    public Mesquestions() {
+    }
+
+    public Mesquestions(Questionnaire questionnaire, Question question) {
+        this.questionnaire = questionnaire;
+        this.question = question;
+    }
 
     public Long getId() {
         return id;
@@ -59,9 +68,4 @@ public class Mesquestions implements Serializable {
     public void setQuestion(Question question) {
         this.question = question;
     }
-
-    public Mesquestions() {
-    }
-    
-    
 }

@@ -31,8 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "QUESTIONNAIRE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Questionnaire.findAll", query = "SELECT q FROM Questionnaire  q")}
-)
+    @NamedQuery(name = "Questionnaire.findAll", query = "SELECT q FROM Questionnaire  q"),
+    @NamedQuery(name = "Questionnaire.count", query = "SELECT count(c) FROM Questionnaire c")
+})
 public class Questionnaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,15 +54,26 @@ public class Questionnaire implements Serializable {
     @OneToMany(mappedBy = "questionnaire", fetch = FetchType.EAGER)
     private List<Mesquestions> listMesquestions;
 
+    public Questionnaire() {
+    }
+
+    public Questionnaire(Date dateCreation, String textIntro, Date dateModification, String mode, String motCle, Utilisateur utilisateur, List<Mesquestions> listMesquestions, List<Notes> lesNotes) {
+        this.dateCreation = dateCreation;
+        this.textIntro = textIntro;
+        this.dateModification = dateModification;
+        this.mode = mode;
+        this.motCle = motCle;
+        this.lesNotes = lesNotes;
+        this.utilisateur = utilisateur;
+        this.listMesquestions = listMesquestions;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Questionnaire() {
     }
 
     public Date getDateCreation() {
@@ -102,6 +114,30 @@ public class Questionnaire implements Serializable {
 
     public void setMotCle(String motCle) {
         this.motCle = motCle;
+    }
+
+    public List<Notes> getLesNotes() {
+        return lesNotes;
+    }
+
+    public void setLesNotes(List<Notes> lesNotes) {
+        this.lesNotes = lesNotes;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public List<Mesquestions> getListMesquestions() {
+        return listMesquestions;
+    }
+
+    public void setListMesquestions(List<Mesquestions> listMesquestions) {
+        this.listMesquestions = listMesquestions;
     }
 
     

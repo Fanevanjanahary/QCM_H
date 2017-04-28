@@ -7,23 +7,29 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ANDRIAMIADANTSOA
  */
 @Entity
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Notes.count", query = "SELECT count(n) FROM Notes n"),
+    @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n")})
 public class Notes implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,10 +37,20 @@ public class Notes implements Serializable {
     private Integer note;
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Utilisateur utilisateur;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Questionnaire questionnaire;
+
+    public Notes() {
+    }
+
+    public Notes(Integer note, Date date, Utilisateur utilisateur, Questionnaire questionnaire) {
+        this.note = note;
+        this.date = date;
+        this.utilisateur = utilisateur;
+        this.questionnaire = questionnaire;
+    }
 
     public Long getId() {
         return id;
@@ -42,9 +58,6 @@ public class Notes implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Notes() {
     }
 
     public Integer getNote() {
