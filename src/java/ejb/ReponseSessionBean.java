@@ -5,7 +5,7 @@
  */
 package ejb;
 
-import entities.Question;
+import entities.Reponse;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -17,32 +17,31 @@ import javax.persistence.Query;
  * @author ANDRIAMIADANTSOA
  */
 @Stateful
-public class QuestionSessionBean {
+public class ReponseSessionBean {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
 
-    public void creerQuestion(Question q) {
-        em.persist(q);
+    public void creerReponse(Reponse reponse) {
+        em.persist(reponse);
     }
     
-    public Question udpade(Question q){
-        return em.merge(q);
+    public Reponse update(Reponse r){
+        return em.merge(r);
     }
     
-    public List<Question> findAll(){
-        Query query = em.createNamedQuery("Question.findAll");
+    public List<Reponse> getAllReponse()
+    {
+        Query query = em.createNamedQuery("Reponse.findAll");
         return query.getResultList();
     }
     
-    public Question findByid(int id){
-        return em.find(Question.class, id);
-    }
-    
-    public void deleteQuestion(Question q){
-        
-        em.remove(q);
+    public Reponse getById(int id){
+        return em.find(Reponse.class, id);
     }
 
-    
+    public void deleteQuestionnaire(Reponse r){
+        em.remove(r);
+    }
+
 }
