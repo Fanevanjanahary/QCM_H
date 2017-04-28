@@ -9,6 +9,7 @@ import ejb.QuestionSessionBean;
 import ejb.ReponseSessionBean;
 import entities.Question;
 import entities.Reponse;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -20,7 +21,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "detailQuestionManagedBean")
 @ViewScoped
-public class DetailQuestionManagedBean {
+public class DetailQuestionManagedBean implements Serializable{
     private int id;
     private Question question;
     List<Reponse> listReponse;

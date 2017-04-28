@@ -11,8 +11,8 @@ import ejb.QuestionnaireSessionBean;
 import entities.Mesquestions;
 import entities.Question;
 import entities.Questionnaire;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -23,8 +23,8 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "detailQuestionnaireManagedBean")
 @ViewScoped
-public class DetailQuestionnaireManagedBean {
-    
+public class DetailQuestionnaireManagedBean implements Serializable{
+
     private int id;
     private Questionnaire questionnaire;
     private List<Question> listQuestion;
@@ -53,12 +53,11 @@ public class DetailQuestionnaireManagedBean {
     public List<Question> getListQuestion(){
         List<Mesquestions> lmesq = mesQuestionsSessionBean.getAll();
         for(Mesquestions mq:lmesq){
-            if(Objects.equals(mq.getQuestionnaire().getId(), questionnaire.getId())){
+            if(mq.getQuestionnaire().getId()== id){
                 listQuestion.add(mq.getQuestion());
             }
         }
         return listQuestion;
     }
-    
     
 }

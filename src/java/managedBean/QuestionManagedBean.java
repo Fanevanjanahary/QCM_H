@@ -7,6 +7,7 @@ package managedBean;
 
 import ejb.QuestionSessionBean;
 import entities.Question;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -18,7 +19,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "questionManagedBean")
 @ViewScoped
-public class QuestionManagedBean {
+public class QuestionManagedBean implements Serializable{
 
     @EJB
     private QuestionSessionBean questionSessionBean;
