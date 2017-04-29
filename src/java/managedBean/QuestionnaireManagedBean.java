@@ -5,7 +5,7 @@
  */
 package managedBean;
 
-import ejb.NoteSessionBean;
+import ejb.GestionnaireNote;
 import ejb.QuestionnaireSessionBean;
 import entities.Notes;
 import entities.Questionnaire;
@@ -28,7 +28,7 @@ public class QuestionnaireManagedBean implements Serializable{
     @EJB
     private QuestionnaireSessionBean questionnaireSessionBean;
     @EJB
-    private NoteSessionBean noteSessionBean;
+    private GestionnaireNote noteSessionBean;
     
 
     public QuestionnaireManagedBean() {

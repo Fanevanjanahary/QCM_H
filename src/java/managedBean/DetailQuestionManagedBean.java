@@ -6,7 +6,7 @@
 package managedBean;
 
 import ejb.QuestionSessionBean;
-import ejb.ReponseSessionBean;
+import ejb.GestionnaireReponse;
 import entities.Question;
 import entities.Reponse;
 import java.io.Serializable;
@@ -26,7 +26,7 @@ public class DetailQuestionManagedBean implements Serializable{
     private Question question;
     List<Reponse> listReponse;
     @EJB
-    private ReponseSessionBean reponseSessionBean;
+    private GestionnaireReponse reponseSessionBean;
 
     @EJB
     private QuestionSessionBean questionSessionBean;
@@ -47,7 +47,7 @@ public class DetailQuestionManagedBean implements Serializable{
      * @return 
    */
     public List<Reponse> getReponses() {  
-      for(Reponse rep:reponseSessionBean.getAllReponse()) {
+      for(Reponse rep:reponseSessionBean.findAll()) {
         if(rep.getQuestion().getId()==id){
             listReponse.add(rep);
         }
