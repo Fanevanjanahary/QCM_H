@@ -18,7 +18,7 @@ import javax.persistence.Query;
  * @author ANDRIAMIADANTSOA
  */
 @Stateful
-public class QuestionSessionBean {
+public class QuestionManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;

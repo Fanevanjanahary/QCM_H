@@ -5,7 +5,7 @@
  */
 package ejb;
 
-import entities.Reponse;
+import entities.Notes;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -17,31 +17,33 @@ import javax.persistence.Query;
  * @author ANDRIAMIADANTSOA
  */
 @Stateful
-public class GestionnaireReponse {
+public class NotesManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
 
-    public void creerReponse(Reponse reponse) {
-        em.persist(reponse);
+    public void creerNotes(Notes note) {
+        em.persist(note);
     }
     
-    public Reponse update(Reponse r){
-        return em.merge(r);
+    public Notes udpade(Notes n){
+        return em.merge(n);
     }
     
-    public List<Reponse> findAll()
-    {
-        Query query = em.createNamedQuery("Reponse.findAll");
+    public List<Notes> findAll(){
+        Query query = em.createNamedQuery("Notes.findAll");
         return query.getResultList();
     }
     
-    public Reponse findById(Long id){
-        return em.find(Reponse.class, id);
+    public Notes findByid(int id){
+        return em.find(Notes.class, id);
     }
-
-    public void delete(Reponse r){
-        em.remove(r);
+    
+    public Notes findById(Long id) {
+        return em.find(Notes.class, id);
     }
-
+    
+    public void delete(Notes n){
+        em.remove(n);
+    }
 }

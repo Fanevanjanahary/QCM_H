@@ -27,7 +27,7 @@ import javax.persistence.Query;
         databaseName = "db_qcm_h"
 )
 @Stateful
-public class QuestionnaireSessionBean {
+public class QuestionnaireManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
@@ -45,7 +45,7 @@ public class QuestionnaireSessionBean {
         return query.getResultList();
     }
 
-    public Questionnaire findById(int id) {
+    public Questionnaire findById(Long id) {
         return em.find(Questionnaire.class, id);
     }
 

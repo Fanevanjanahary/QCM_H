@@ -30,7 +30,7 @@ import javax.persistence.Query;
 @Startup
 @LocalBean
 @Singleton
-public class InitSingleton {
+public class Init {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
