@@ -24,11 +24,13 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class QuestionnaireManagedBean implements Serializable{
 
+    private Long id;
     private List<Questionnaire> listQuestionnaire;
     @EJB
     private QuestionnaireSessionBean questionnaireSessionBean;
     @EJB
     private GestionnaireNote noteSessionBean;
+    private String motCle;
     
 
     public QuestionnaireManagedBean() {
@@ -61,6 +63,22 @@ public class QuestionnaireManagedBean implements Serializable{
         
     }
     
+    /**
+     * Méthode pour copier un questionnaire
+     * @return 
+     */
+    public String copierQuestionnaire(){
+        
+        
+        return "";
+    }
     
-    
+    /**
+     * Méthode pour rechercher un questionnaire par un ou plusieurs mot clé
+     * @return 
+     */
+    public List<Questionnaire> recherche(){
+        String[] mots = motCle.split(" ");
+        return questionnaireSessionBean.find(mots);       
+    }
 }

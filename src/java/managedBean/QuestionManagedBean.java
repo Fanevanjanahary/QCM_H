@@ -7,6 +7,7 @@ package managedBean;
 
 import ejb.QuestionSessionBean;
 import entities.Question;
+import entities.Questionnaire;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -20,10 +21,10 @@ import javax.faces.view.ViewScoped;
 @Named(value = "questionManagedBean")
 @ViewScoped
 public class QuestionManagedBean implements Serializable{
-
+    private String motCle;
+    private List<Question> listQuestion;
     @EJB
     private QuestionSessionBean questionSessionBean;
-    private List<Question> listQuestion;
 
     public QuestionManagedBean() {
     }
@@ -44,6 +45,12 @@ public class QuestionManagedBean implements Serializable{
         questionSessionBean.deleteQuestion(q);
     }
     
-    
-    
+    /**
+     * Méthode pour rechercher un question par un ou plusieurs mot clé
+     * @return 
+     */
+    public List<Questionnaire> recherche(){
+        String[] mots = motCle.split(" ");
+        return questionSessionBean.find(mots);       
+    }
 }
