@@ -5,7 +5,7 @@
  */
 package managedBean;
 
-import ejb.QuestionSessionBean;
+import ejb.QuestionManager;
 import entities.Question;
 import entities.Questionnaire;
 import java.io.Serializable;
@@ -18,31 +18,31 @@ import javax.faces.view.ViewScoped;
  *
  * @author ANDRIAMIADANTSOA
  */
-@Named(value = "questionManagedBean")
+@Named(value = "questionMBean")
 @ViewScoped
-public class QuestionManagedBean implements Serializable{
+public class QuestionMBean implements Serializable{
     private String motCle;
     private List<Question> listQuestion;
     @EJB
-    private QuestionSessionBean questionSessionBean;
+    private QuestionManager questionManager;
 
-    public QuestionManagedBean() {
+    public QuestionMBean() {
     }
     
     public void creerQuestion(Question q)
     {
-        questionSessionBean.creerQuestion(q);
+        questionManager.creerQuestion(q);
     }
     public List<Question> getQuestion()
     {
          if(listQuestion==null){
-               listQuestion = questionSessionBean.findAll();
+               listQuestion = questionManager.findAll();
          }
         return listQuestion;
     }
     
     public void deleteQuestion(Question q){
-        questionSessionBean.deleteQuestion(q);
+        questionManager.deleteQuestion(q);
     }
     
     /**
@@ -51,6 +51,6 @@ public class QuestionManagedBean implements Serializable{
      */
     public List<Questionnaire> recherche(){
         String[] mots = motCle.split(" ");
-        return questionSessionBean.find(mots);       
+        return questionManager.find(mots);       
     }
 }

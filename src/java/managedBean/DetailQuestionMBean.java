@@ -5,8 +5,8 @@
  */
 package managedBean;
 
-import ejb.QuestionSessionBean;
-import ejb.GestionnaireReponse;
+import ejb.QuestionManager;
+import ejb.ReponseManager;
 import entities.Question;
 import entities.Reponse;
 import java.io.Serializable;
@@ -19,35 +19,24 @@ import javax.faces.view.ViewScoped;
  *
  * @author ANDRIAMIADANTSOA
  */
-@Named(value = "detailQuestionManagedBean")
+@Named(value = "detailQuestionMBean")
 @ViewScoped
-public class DetailQuestionManagedBean implements Serializable{
+public class DetailQuestionMBean implements Serializable{
     private int id;
     private Question question;
     List<Reponse> listReponse;
     @EJB
-    private GestionnaireReponse reponseSessionBean;
+    private ReponseManager reponseManager;
 
     @EJB
-    private QuestionSessionBean questionSessionBean;
-    
-
-    
-    public DetailQuestionManagedBean() {
-    }
-    
-    public String upatdequestion()
-    {
-        question = questionSessionBean.udpade(question);
-        return "listQuestion";
-    }
+    private QuestionManager questionManager;
     
     /** 
    * Retourne la liste des reponse d'une question.
      * @return 
    */
     public List<Reponse> getReponses() {  
-      for(Reponse rep:reponseSessionBean.findAll()) {
+      for(Reponse rep:reponseManager.findAll()) {
         if(rep.getQuestion().getId()==id){
             listReponse.add(rep);
         }
@@ -58,8 +47,17 @@ public class DetailQuestionManagedBean implements Serializable{
     /* update une reponse d'une question */
     public String updateReponse(int id)
     {
-        reponseSessionBean.update(listReponse.get(id));
+        reponseManager.update(listReponse.get(id));
         return "listReponse";
+    }
+    
+    public DetailQuestionMBean() {
+    }
+    
+    public String upatdequestion()
+    {
+        question = questionManager.udpade(question);
+        return "listQuestion";
     }
     
 }

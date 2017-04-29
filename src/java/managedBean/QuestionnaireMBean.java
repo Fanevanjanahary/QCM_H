@@ -5,8 +5,8 @@
  */
 package managedBean;
 
-import ejb.GestionnaireNote;
-import ejb.QuestionnaireSessionBean;
+import ejb.NotesManager;
+import ejb.QuestionnaireManager;
 import entities.Notes;
 import entities.Questionnaire;
 import java.io.Serializable;
@@ -20,25 +20,26 @@ import javax.faces.view.ViewScoped;
  *
  * @author ANDRIAMIADANTSOA
  */
-@Named(value = "questionnaireManagedBean")
+@Named(value = "questionnaireMBean")
 @ViewScoped
-public class QuestionnaireManagedBean implements Serializable{
+public class QuestionnaireMBean implements Serializable{
 
     private Long id;
     private List<Questionnaire> listQuestionnaire;
     @EJB
-    private QuestionnaireSessionBean questionnaireSessionBean;
+    private QuestionnaireManager questionnaireManager;
     @EJB
-    private GestionnaireNote noteSessionBean;
+    private NotesManager noteSessionBean;
     private String motCle;
+    private Long copieId;
     
 
-    public QuestionnaireManagedBean() {
+    public QuestionnaireMBean() {
     }
     
     public List<Questionnaire> getQuestionnaire(){
         if(listQuestionnaire == null){
-            listQuestionnaire = questionnaireSessionBean.getAllQuestionnaire();
+            listQuestionnaire = questionnaireManager.getAllQuestionnaire();
         }
         return listQuestionnaire;
     }
@@ -57,10 +58,9 @@ public class QuestionnaireManagedBean implements Serializable{
     public void deleteQuestionnaire(Questionnaire q) throws Exception{
         
         if(estRepondu(q)==false){
-                questionnaireSessionBean.deleteQuestionnaire(q);
+                questionnaireManager.deleteQuestionnaire(q);
             }
-            throw new Exception("Cet questionnaire ne pas effacer");
-        
+            throw new Exception("Cet questionnaire ne pas effacer");        
     }
     
     /**
@@ -68,9 +68,15 @@ public class QuestionnaireManagedBean implements Serializable{
      * @return 
      */
     public String copierQuestionnaire(){
-        
-        
-        return "";
+        return "copieId=" + copieId + "&amp;faces-redirect=true";
+    }
+    
+    /**
+     * Méthode pour récupérer la copie
+     * @return 
+     */
+    public Questionnaire getCopie(){
+        return questionnaireManager.findById(copieId);
     }
     
     /**
@@ -79,6 +85,7 @@ public class QuestionnaireManagedBean implements Serializable{
      */
     public List<Questionnaire> recherche(){
         String[] mots = motCle.split(" ");
-        return questionnaireSessionBean.find(mots);       
+        
+        return questionnaireManager.find(mots);       
     }
 }

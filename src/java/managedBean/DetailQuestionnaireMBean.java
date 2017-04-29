@@ -5,9 +5,9 @@
  */
 package managedBean;
 
-import ejb.MesQuestionsSessionBean;
-import ejb.QuestionSessionBean;
-import ejb.QuestionnaireSessionBean;
+import ejb.MesQuestionsManager;
+import ejb.QuestionManager;
+import ejb.QuestionnaireManager;
 import entities.Mesquestions;
 import entities.Question;
 import entities.Questionnaire;
@@ -21,28 +21,28 @@ import javax.faces.view.ViewScoped;
  *
  * @author ANDRIAMIADANTSOA
  */
-@Named(value = "detailQuestionnaireManagedBean")
+@Named(value = "detailQuestionnaireMBean")
 @ViewScoped
-public class DetailQuestionnaireManagedBean implements Serializable{
+public class DetailQuestionnaireMBean implements Serializable{
 
     private int id;
     private Questionnaire questionnaire;
     private List<Question> listQuestion;
     @EJB
-    private QuestionnaireSessionBean questionnaireSessionBean;
+    private QuestionnaireManager questionnaireManager;
     
     @EJB
-    private QuestionSessionBean questionSessionBean;
+    private QuestionManager questionManager;
     
     @EJB
-    private MesQuestionsSessionBean mesQuestionsSessionBean;
+    private MesQuestionsManager mesQuestionsManager;
     
-    public DetailQuestionnaireManagedBean() {
+    public DetailQuestionnaireMBean() {
     }
     
     public String upatdequestion()
     {
-        questionnaire = questionnaireSessionBean.update(questionnaire);
+        questionnaire = questionnaireManager.update(questionnaire);
         return "listQuestionnaire";
     }
     
@@ -51,7 +51,7 @@ public class DetailQuestionnaireManagedBean implements Serializable{
      * @return 
    */
     public List<Question> getListQuestion(){
-        List<Mesquestions> lmesq = mesQuestionsSessionBean.getAll();
+        List<Mesquestions> lmesq = mesQuestionsManager.getAll();
         for(Mesquestions mq:lmesq){
             if(mq.getQuestionnaire().getId()== id){
                 listQuestion.add(mq.getQuestion());

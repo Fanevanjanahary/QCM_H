@@ -9,7 +9,7 @@ package managedBean;
  * Interface contenant les methodes principales des ManagedBean
  * @author Proprietaire
  */
-public interface InterfaceManagedBean {
+public interface InterfaceMBean {
     public String inserer();
     public String modifier();
     public String supprimer();
