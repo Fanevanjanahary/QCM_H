@@ -10,6 +10,7 @@ import entities.Notes;
 import entities.Questionnaire;
 import entities.Reponse;
 import entities.Utilisateur;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -22,7 +23,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "notesManagedBean")
 @ViewScoped
-public class NotesManagedBean implements InterfaceManagedBean {
+public class NotesManagedBean implements Serializable, InterfaceManagedBean {
 
     private Long id;
     private int note;
@@ -50,7 +51,6 @@ public class NotesManagedBean implements InterfaceManagedBean {
      * Méthode pour insérer une note
      * @return 
      */
-    @Override
     public String inserer(){
         Notes _notes = new Notes(note, date, new Utilisateur(id_utilisateur), new Questionnaire(id_questionnaire));
         gestionnaireNote.creerNotes(_notes);

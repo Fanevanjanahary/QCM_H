@@ -8,6 +8,7 @@ package managedBean;
 import ejb.GestionnaireReponse;
 import entities.Question;
 import entities.Reponse;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "reponseManagedBean")
 @ViewScoped
-public class ReponseManagedBean implements InterfaceManagedBean {
+public class ReponseManagedBean implements Serializable, InterfaceManagedBean {
     private Long id;
     private String textIntro;
     private Question question;
