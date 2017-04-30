@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Utilisateur.count", query = "SELECT count(u) FROM Utilisateur u"),
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")}
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u"),
+    @NamedQuery(name = "Utilisateur.find", query = "SELECT u FROM Utilisateur u WHERE u.nomUtilisateur = :utilisateur AND u.motDepasse = :motDePasse")}
 )
 public class Utilisateur implements Serializable {
 
