@@ -47,6 +47,7 @@ public class Reponse implements Serializable {
         this.textIntro = textIntro;
         this.question = question;
         this.statut = statut;
+        question.getLesReponses().add(this);
     }
 
     public Long getId() {

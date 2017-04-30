@@ -30,6 +30,13 @@ a:link, a:visited {
 
 ul{    
     list-style-type: none;    
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#left li{
+    
+    padding-bottom: 10px;
 }
 
 

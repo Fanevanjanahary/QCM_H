@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -46,13 +47,15 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Mesquestions> listMesquestions;
     
-    public Question(){}
+    public Question(){
+        lesReponses=new ArrayList<Reponse>();
+    }
 
     public Question(Integer note, String textIntro, String motCle, List<Reponse> lesReponses, List<Mesquestions> listMesquestions) {
         this.note = note;
         this.textIntro = textIntro;
         this.motCle = motCle;
-        this.lesReponses = lesReponses;
+        this.lesReponses = (lesReponses!=null)?lesReponses:new ArrayList<Reponse>();
         this.listMesquestions = listMesquestions;
     }    
 

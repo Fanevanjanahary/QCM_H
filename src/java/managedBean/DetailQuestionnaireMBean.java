@@ -25,7 +25,7 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class DetailQuestionnaireMBean implements Serializable{
 
-    private int id;
+    private Long id;
     private Questionnaire questionnaire;
     private List<Question> listQuestion;
     @EJB
@@ -39,10 +39,13 @@ public class DetailQuestionnaireMBean implements Serializable{
     
     public DetailQuestionnaireMBean() {
     }
+    public void initQuestionnaire(){
+        setQuestionnaire(questionnaireManager.findById(getId()));
+    }
     
     public String upatdequestion()
     {
-        questionnaire = questionnaireManager.update(questionnaire);
+        setQuestionnaire(questionnaireManager.update(getQuestionnaire()));
         return "listQuestionnaire";
     }
     
@@ -53,11 +56,39 @@ public class DetailQuestionnaireMBean implements Serializable{
     public List<Question> getListQuestion(){
         List<Mesquestions> lmesq = mesQuestionsManager.getAll();
         for(Mesquestions mq:lmesq){
-            if(mq.getQuestionnaire().getId()== id){
+            if(mq.getQuestionnaire().getId()== getId()){
                 listQuestion.add(mq.getQuestion());
             }
         }
         return listQuestion;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the questionnaire
+     */
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
+    /**
+     * @param questionnaire the questionnaire to set
+     */
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
     }
     
 }
