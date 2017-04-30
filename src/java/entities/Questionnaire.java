@@ -48,11 +48,12 @@ public class Questionnaire implements Serializable {
     private Date dateModification;
     private String mode;
     private  String motCle;
-    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    
+    @OneToMany(mappedBy = "questionnaire", cascade = CascadeType.PERSIST)
     private List<Notes> lesNotes;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Utilisateur utilisateur;
-    @OneToMany(mappedBy = "questionnaire", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "questionnaire", cascade = CascadeType.PERSIST)
     private List<Mesquestions> listMesquestions;
 
     public Questionnaire() {

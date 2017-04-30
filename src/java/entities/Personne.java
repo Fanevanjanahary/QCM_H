@@ -36,7 +36,8 @@ public class Personne implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
-    @OneToOne
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Utilisateur utilisateur;
 
     public Personne() {

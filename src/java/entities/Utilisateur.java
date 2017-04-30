@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,11 +40,12 @@ public class Utilisateur implements Serializable {
     private Long id;
     private String nomUtilisateur;
     private String motDepasse;
-    @OneToMany(mappedBy = "utilisateur")
+    
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     private List<Questionnaire> lesQuestionnaires;
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     private List<Notes> lesNotes;
-    @OneToOne(mappedBy="utilisateur",cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy="utilisateur", cascade = CascadeType.PERSIST)
     private Personne personne;
 
     public Long getId() {

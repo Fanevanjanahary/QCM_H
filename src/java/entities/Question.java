@@ -40,9 +40,10 @@ public class Question implements Serializable {
     private Integer note;
     private String textIntro;
     private String motCle;
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    
+    @OneToMany(mappedBy = "question",cascade = CascadeType.PERSIST)
     private List<Reponse> lesReponses;
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Mesquestions> listMesquestions;
     
     public Question(){}
@@ -85,6 +86,22 @@ public class Question implements Serializable {
 
     public void setMotCle(String motCle) {
         this.motCle = motCle;
+    }
+
+    public List<Reponse> getLesReponses() {
+        return lesReponses;
+    }
+
+    public void setLesReponses(List<Reponse> lesReponses) {
+        this.lesReponses = lesReponses;
+    }
+
+    public List<Mesquestions> getListMesquestions() {
+        return listMesquestions;
+    }
+
+    public void setListMesquestions(List<Mesquestions> listMesquestions) {
+        this.listMesquestions = listMesquestions;
     }
 
     @Override

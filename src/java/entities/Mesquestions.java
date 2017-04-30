@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,7 +34,8 @@ public class Mesquestions implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    
+    @ManyToOne
     private Questionnaire questionnaire;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Question question;

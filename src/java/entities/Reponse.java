@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,9 +35,10 @@ public class Reponse implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String textIntro;
-    @ManyToOne
-    private Question question;
     Boolean statut;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Question question;
     
     public Reponse() {
     }

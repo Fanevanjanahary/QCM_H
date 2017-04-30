@@ -38,9 +38,10 @@ public class Notes implements Serializable {
     private Integer note;
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Utilisateur utilisateur;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Questionnaire questionnaire;
 
     public Notes() {
