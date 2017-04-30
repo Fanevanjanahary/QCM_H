@@ -22,8 +22,8 @@ import javax.persistence.Query;
         name = "java:app/jdbc/db_qcm_h",
         serverName = "localhost",
         portNumber = 1527,
-        user = "faneva", // nom et
-        password = "fan", // mot de passe que vous avez donnés lors de la création de la base de données
+        user = "jarjar", // nom et
+        password = "jarjar", // mot de passe que vous avez donnés lors de la création de la base de données
         databaseName = "db_qcm_h"
 )
 @Stateful
