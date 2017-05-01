@@ -67,6 +67,10 @@ public class Utilisateur implements Serializable {
         this.lesQuestionnaires = lesQuestionnaires;
         this.lesNotes = lesNotes;
     }
+    
+    public Boolean isProfesseur(){
+        return false;
+    }
 
     public String getNomUtilisateur() {
         return nomUtilisateur;

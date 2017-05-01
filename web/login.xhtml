@@ -29,7 +29,10 @@
                     <h:inputText id="mdp" value="#{login.user.motDepasse}"/>
                     <h:commandButton value="Valider" action="#{login.login()}"/>
                 </h:form>
-                <h:message for="nombre"/>
+                <p style="color : red">
+                    <h:messages />
+                    <h:outputText value="#{login.message}" />
+                </p>
             </div>
         </div>
     </h:body>

@@ -15,20 +15,24 @@
 
             <ui:define name="s_content">
                 <h2>Questions :</h2>
-                <ui:repeat value="#{detailQuestionnaireMBean.questionnaire.listMesquestions}" var="question">
-                    <div>
-                        <h3>#{question.question.textIntro}</h3>
-                        <ul>
-                            <ui:repeat value="#{question.question.lesReponses}" var="reponse" >
-                                <li>#{reponse.textIntro}</li>
-                            </ui:repeat>
-                        </ul>
-                    </div>
-                </ui:repeat>
-                <div>
-
-                </div>
-
+                <h:form>
+                    <ui:repeat value="#{detailQuestionnaireMBean.questionnaire.listMesquestions}" var="question" varStatus="status">
+                        <div>
+                            <h3>#{question.question.textIntro}</h3>
+                            <h:selectOneRadio value="#{detailQuestionnaireMBean.reponses[status.index]}"
+                                              required="true"
+                                     requiredMessage="Vous n'avez pas répondu à cette question"  
+                                     converter="#{detailQuestionnaireMBean.reponseConverter}">
+                                
+                                    <f:selectItems value="#{question.question.lesReponses}" var="reponse"  itemValue="#{reponse}" itemLabel="#{reponse.textIntro}"  />
+                                
+                            </h:selectOneRadio>
+                            <h:message for="#{status.index}" />
+                        </div>
+                    </ui:repeat>
+                    <h:commandButton action="#{detailQuestionnaireMBean.soumettre()}" value="Enregistrer les réponse" />
+                    
+                </h:form>
             </ui:define>
 
         </ui:composition>

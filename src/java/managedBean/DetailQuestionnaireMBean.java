@@ -8,14 +8,20 @@ package managedBean;
 import ejb.MesQuestionsManager;
 import ejb.QuestionManager;
 import ejb.QuestionnaireManager;
+import ejb.ReponseManager;
 import entities.Mesquestions;
 import entities.Question;
 import entities.Questionnaire;
+import entities.Reponse;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import util.Util;
 
 /**
  *
@@ -24,6 +30,20 @@ import javax.faces.view.ViewScoped;
 @Named(value = "detailQuestionnaireMBean")
 @ViewScoped
 public class DetailQuestionnaireMBean implements Serializable{
+
+    /**
+     * @return the reponseConverter
+     */
+    public Converter getReponseConverter() {
+        return reponseConverter;
+    }
+
+    /**
+     * @param reponseConverter the reponseConverter to set
+     */
+    public void setReponseConverter(Converter reponseConverter) {
+        this.reponseConverter = reponseConverter;
+    }
 
     private Long id;
     private Questionnaire questionnaire;
@@ -37,10 +57,46 @@ public class DetailQuestionnaireMBean implements Serializable{
     @EJB
     private MesQuestionsManager mesQuestionsManager;
     
+    @EJB
+    private ReponseManager reponseManager;
+    
+    private Reponse[] reponses;
+    
+    private Converter reponseConverter = new Converter() {
+        @Override
+        public Object getAsObject(FacesContext context, UIComponent component, String value) {
+            return reponseManager.findById(Long.decode(value));
+        }
+
+        @Override
+        public String getAsString(FacesContext context, UIComponent component, Object value) {
+            Reponse cb = (Reponse) value;
+            return cb.getId().toString();
+        }
+    };
+    
     public DetailQuestionnaireMBean() {
     }
     public void initQuestionnaire(){
         setQuestionnaire(questionnaireManager.findById(getId()));
+        setReponses(new Reponse[questionnaire.getListMesquestions().size()]);
+        for(int i=0; i< getReponses().length;i++){
+            getReponses()[i]=new Reponse();
+        }
+    }
+    
+    public String soumettre(){
+        int note=0;
+        int max=0;
+        for(int i=0;i<reponses.length;i++)
+        {
+            int temp=reponses[i].getQuestion().getNote();
+            max+=temp;
+            note=(reponses[i].getStatut())?note+temp:note;
+        }
+        note=20*note/max;
+        Util.addFlashInfoMessage("Vous avez passé le quizz '"+questionnaire.getTextIntro()+"' avec une note de "+note+"/20.");
+        return "/student/index";
     }
     
     public String upatdequestion()
@@ -89,6 +145,20 @@ public class DetailQuestionnaireMBean implements Serializable{
      */
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
+    }
+
+    /**
+     * @return the reponses
+     */
+    public Reponse[] getReponses() {
+        return reponses;
+    }
+
+    /**
+     * @param reponses the reponses to set
+     */
+    public void setReponses(Reponse[] reponses) {
+        this.reponses = reponses;
     }
     
 }

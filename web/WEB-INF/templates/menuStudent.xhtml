@@ -6,7 +6,7 @@
 
     <ul>
         <ui:repeat value="#{questionnaireMBean.questionnaire}" var="questionnaire" >
-            <li><h:link outcome="/student/questionnaire?id=#{questionnaire.id}" value="#{questionnaire.textIntro}"/></li>             
+            <li><h:link outcome="/student/questionnaire?faces-redirect=true&amp;includeViewParams=true&amp;idQuestionnaire=#{questionnaire.id}" value="#{questionnaire.textIntro}"/></li>             
         </ui:repeat>
     </ul>
 
