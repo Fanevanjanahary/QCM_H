@@ -9,6 +9,7 @@ import entities.Questionnaire;
 import java.util.List;
 import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -26,7 +27,7 @@ import javax.persistence.Query;
         password = "jarjar", // mot de passe que vous avez donnés lors de la création de la base de données
         databaseName = "db_qcm_h"
 )
-@Stateful
+@Stateless
 public class QuestionnaireManager {
 
     @PersistenceContext(unitName = "QCM_HPU")

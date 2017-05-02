@@ -30,6 +30,8 @@ public class loginBean {
 
     @EJB
     UtilisateurManager um;
+    
+    
 
     /**
      * Creates a new instance of loginBean
@@ -53,13 +55,13 @@ public class loginBean {
     }
 
     public void initUser() {
-        System.out.println("managedBean.loginBean.initUser()");
-        Util.addFlashInfoMessage("Je passe");
-        user = um.findById(idUser);
-        if (user == null) {
-            return;
-
-        }
+        //System.out.println("managedBean.loginBean.initUser()");
+        //Util.addFlashInfoMessage("Je passe");
+        //user = um.findById(idUser);       
+    }
+    
+    public void test(){
+        System.out.println("je passe");
     }
 
     /**

@@ -7,6 +7,7 @@ package ejb;
 
 import entities.Notes;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,8 +22,18 @@ public class NotesManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
+    
+    @EJB
+    private QuestionnaireManager qm;
 
+    
+    @EJB
+    private UtilisateurManager um;
+
+    
     public void creerNotes(Notes note) {
+        note.setQuestionnaire(qm.findById(note.getQuestionnaire().getId()));
+        note.setUtilisateur(um.findById(note.getUtilisateur().getId()));
         em.persist(note);
     }
     

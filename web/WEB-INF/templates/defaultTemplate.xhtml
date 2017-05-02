@@ -5,9 +5,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:insert name="meta">
-        <f:metadata>  
+        <f:metadata >  
             <f:viewParam name="idUser" value="#{login.idUser}" required="true" />  
-            <f:viewAction action="#{login.initUser}"/>  
+            <f:viewAction action="#{login.test}"/>  
         </f:metadata>
     </ui:insert>
     <h:head>
@@ -23,9 +23,6 @@
         <div id="top" class="top">
             <h2>QCM du group H</h2>
             
-            <h:outputText value="#{login.user.nomUtilisateur}" />       
-            <h:outputText value="#{login.idUser}" />
-
             <ui:insert name="top">                
                     <ui:include src="menuProf.xhtml"/>                
             </ui:insert>

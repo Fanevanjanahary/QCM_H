@@ -6,14 +6,19 @@
 package managedBean;
 
 import ejb.MesQuestionsManager;
+import ejb.NotesManager;
 import ejb.QuestionManager;
 import ejb.QuestionnaireManager;
 import ejb.ReponseManager;
+import ejb.UtilisateurManager;
 import entities.Mesquestions;
+import entities.Notes;
 import entities.Question;
 import entities.Questionnaire;
 import entities.Reponse;
+import entities.Utilisateur;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
@@ -32,6 +37,20 @@ import util.Util;
 public class DetailQuestionnaireMBean implements Serializable{
 
     /**
+     * @return the idUser
+     */
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    /**
+     * @param idUser the idUser to set
+     */
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    /**
      * @return the reponseConverter
      */
     public Converter getReponseConverter() {
@@ -46,6 +65,7 @@ public class DetailQuestionnaireMBean implements Serializable{
     }
 
     private Long id;
+    private Long idUser;
     private Questionnaire questionnaire;
     private List<Question> listQuestion;
     @EJB
@@ -59,6 +79,12 @@ public class DetailQuestionnaireMBean implements Serializable{
     
     @EJB
     private ReponseManager reponseManager;
+    
+    @EJB
+    private NotesManager nm;
+    
+    @EJB
+    UtilisateurManager um;
     
     private Reponse[] reponses;
     
@@ -95,8 +121,12 @@ public class DetailQuestionnaireMBean implements Serializable{
             note=(reponses[i].getStatut())?note+temp:note;
         }
         note=20*note/max;
+        Utilisateur u;
+        u = um.findById(idUser);
+        Notes n=new Notes(note, new Date(), u, questionnaire);
+        nm.creerNotes(n);
         Util.addFlashInfoMessage("Vous avez passé le quizz '"+questionnaire.getTextIntro()+"' avec une note de "+note+"/20.");
-        return "/student/index";
+        return "/student/index?faces-redirect=true&amp;idUser=" + u.getId();
     }
     
     public String upatdequestion()
