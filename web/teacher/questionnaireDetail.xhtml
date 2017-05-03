@@ -1,9 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <ui:composition template="./../WEB-INF/templates/defaultTemplate.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<f:metadata xmlns:f="http://xmlns.jcp.org/jsf/core"
+            xmlns:h="http://xmlns.jcp.org/jsf/html">  
+        <f:viewParam name="idQuestionnaire" value="#{detailQuestionnaireMBean.id}" required="true"/>  
+        <f:viewParam name="idUser" value="#{detailQuestionnaireMBean.idUser}" required="true" />  
+                <f:viewParam name="idUser" value="#{login.idUser}" required="true" />  
+        <f:viewAction action="#{login.initUser()}"/>
+        <f:viewAction action="#{detailQuestionnaireMBean.initQuestionnaire()}"/>  
+</f:metadata>        
+<ui:composition template="./../WEB-INF/templates/defaultTemplate.xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
             <ui:define name="content">
-                content
+               <h2>Questions :</h2>
+                <h:form>
+                    <ui:repeat value="#{detailQuestionnaireMBean.questionnaire.listMesquestions}" var="question" varStatus="status">
+                        <div>
+                            <h3>#{question.question.textIntro}</h3>
+                            <h:selectOneRadio value="#{detailQuestionnaireMBean.reponses[status.index]}"
+                                              required="true"
+                                     requiredMessage="Vous n'avez pas répondu à cette question"  
+                                     converter="#{detailQuestionnaireMBean.reponseConverter}">
+                                
+                                    <f:selectItems value="#{question.question.lesReponses}" var="reponse"  itemValue="#{reponse}" itemLabel="#{reponse.textIntro}"  />
+                                
+                            </h:selectOneRadio>
+                            <h:message for="#{status.index}" />
+                        </div>
+                    </ui:repeat>
+                    
+                    
+                </h:form>
             </ui:define>
 
         </ui:composition>
