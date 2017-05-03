@@ -9,11 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -48,6 +46,7 @@ public class Utilisateur implements Serializable {
     private List<Notes> lesNotes;
     @OneToOne(mappedBy="utilisateur", cascade = CascadeType.PERSIST)
     private Personne personne;
+    private String type;
 
     public Long getId() {
         return id;
@@ -60,16 +59,17 @@ public class Utilisateur implements Serializable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String nomUtilisateur, String motDepasse, Personne personne, List<Questionnaire> lesQuestionnaires, List<Notes> lesNotes) {
+    public Utilisateur(String nomUtilisateur, String motDepasse, Personne personne,String type, List<Questionnaire> lesQuestionnaires, List<Notes> lesNotes) {
         this.nomUtilisateur = nomUtilisateur;
         this.motDepasse = motDepasse;
         this.personne = personne;
+        this.type = type;
         this.lesQuestionnaires = lesQuestionnaires;
         this.lesNotes = lesNotes;
     }
     
     public Boolean isProfesseur(){
-        return false;
+        return "Enseignant".equals(type);
     }
 
     public String getNomUtilisateur() {
@@ -95,6 +95,14 @@ public class Utilisateur implements Serializable {
     public void setPersonne(Personne personne) {
         this.personne = personne;
         // personne.setUtilisateur(this);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
 

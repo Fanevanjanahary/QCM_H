@@ -43,14 +43,14 @@ public class Init {
             Personne p1 = new Personne("Richard", "Grin", null);
             Personne p2 = new Personne("ANDRIAMIADANTSOA", "Fanevanjanahary", null);
             Personne p3 = new Personne("ASSANY", "Ylias", null);
-            Personne p4 = new Personne("ANDRIAMIADANTSOA", "Fanevanjanahary", null);
+            Personne p4 = new Personne("RAKOTOMALALA", "Tsitohaina", null);
             Personne p5 = new Personne("Michel", "Buffa", null);
             
-            Utilisateur u1 = new Utilisateur("richard", "richard", p1, null, null);
-            Utilisateur u2 = new Utilisateur("faneva", "faneva", p2, null, null);
-            Utilisateur u3 = new Utilisateur("andry", "andry", p3, null, null);
-            Utilisateur u4 = new Utilisateur("ylias", "ylias", p4, null, null);
-            Utilisateur u5 = new Utilisateur("michel", "michel", p5, null, null);
+            Utilisateur u1 = new Utilisateur("richard", "richard", p1,"Enseignat", null, null);
+            Utilisateur u2 = new Utilisateur("faneva", "faneva", p2,"Etudiant", null, null);
+            Utilisateur u3 = new Utilisateur("andry", "andry", p4,"Etudiant", null, null);
+            Utilisateur u4 = new Utilisateur("ylias", "ylias", p3,"Etudiant", null, null);
+            Utilisateur u5 = new Utilisateur("michel", "michel", p5,"Enseignatn", null, null);
            
              Question q1_1 = new Question(2, "Combien de couches au moins dans une application Java EE ?", "JEE", null, null);
               Reponse r11_1 = new Reponse("Vrai", q1_1, Boolean.TRUE);
