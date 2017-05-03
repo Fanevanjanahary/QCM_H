@@ -48,7 +48,9 @@ public class UtilisateurManager {
     
     
     public Utilisateur findById(Long id){
-        return em.find(Utilisateur.class, id);
+        Utilisateur u=em.find(Utilisateur.class, id);
+        System.out.println(u.getLesNotes().size());
+        return u;
     }
 
     public void delete(Utilisateur r){

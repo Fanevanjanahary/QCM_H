@@ -1,10 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 template="./../WEB-INF/templates/defaultTemplate.xhtml">
 
+    <ui:define name="meta">
+        <f:metadata >  
+            <f:viewParam name="idEtudiant" value="#{detailEtudiantMBean.idEtudiant}" required="true"/>  
+            <f:viewAction action="#{detailEtudiantMBean.init}" />  
+        </f:metadata>
+    </ui:define>
+
     <ui:define name="content">
-        content
+        <h1>
+            <h:outputText value="#{detailEtudiantMBean.u.personne.nom}
+                          #{detailEtudiantMBean.u.personne.prenom}" />
+        </h1>
+
+        <f:view>
+
+
+            <h:form>
+                <h2>Notes</h2>
+                <p:dataTable value="#{detailEtudiantMBean.listeNotes}" var="item" 
+                             emptyMessage="Cet &eacute;tudiant n'a passé aucun questionnaire"
+                             paginator="true" 
+                             rows="10">
+                    <p:column sortBy="#{item.questionnaire.textIntro}" filterBy="#{item.questionnaire.textIntro}">
+                        <f:facet name="header">
+                            <h:outputText value="Questionnaire"/>
+                        </f:facet>
+                        <h:outputText value="#{item.questionnaire.textIntro}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{item.date}">
+                        <f:facet name="header">
+                            <h:outputText value="Date"/>
+                        </f:facet>
+                        <h:outputText value="#{item.date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Note"/>
+                        </f:facet>
+                        <h:outputText value="#{item.note}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
     </ui:define>
 
 </ui:composition>

@@ -6,6 +6,7 @@
 package ejb;
 
 import entities.Notes;
+import entities.Utilisateur;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -56,5 +57,9 @@ public class NotesManager {
     
     public void delete(Notes n){
         em.remove(n);
+    }
+    
+    public  List<Notes> findByUtilisateur(Utilisateur u){
+        return em.createNamedQuery("Notes.findByUtilisateurId").setParameter("utilisateur", u).getResultList();
     }
 }

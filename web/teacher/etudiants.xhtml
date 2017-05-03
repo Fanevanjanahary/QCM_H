@@ -1,14 +1,47 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../WEB-INF/templates/defaultTemplate.xhtml">
 
             <ui:define name="content">
-                content
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value=" Liste des &eacute;tudiants"/></h1>
+                        <p:dataTable value="#{etudiantMBean.etudiants}" var="item" emptyMessage="Aucun &eacute;tudiant avec ce critère"
+                                     widgetVar="customerTable"
+                                     paginator="true" 
+                                     rows="10">
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Recherche dans tous les champs de recherche"/>
+                                    <p:inputText id="globalFilter" onkeyup="PF('customerTable').filter()"
+                                                 style="width:150px"/>
+                                </p:outputPanel>
+                            </f:facet>
+                            <p:column sortBy="#{item.personne.nom}" filterBy="#{item.personne.nom}">
+                                <f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                                <h:link outcome="/teacher/etudiantDetail?faces-redirect=true&amp;idEtudiant=#{item.id}" value="#{item.personne.nom}"/>
+                            </p:column>
+
+                            <p:column sortBy="#{item.personne.prenom}" filterBy="#{item.personne.prenom}">
+                                <f:facet name="header">
+                                    <h:outputText value="Prénom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.personne.prenom}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+
             </ui:define>
 
         </ui:composition>
