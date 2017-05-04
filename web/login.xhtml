@@ -16,27 +16,38 @@
 
     <h:body>
 
-
+        
         <div id="top" class="top">
             <h2>QCM du group H</h2>
         </div>
+        <h:form>
         <div>
             <div id="left">
             </div>
             <div id="content" class="left_content">
 
                 <h:form>
-                    <h:outputLabel value="Veuillez vous identifier" for="login"/>
-                    <h:inputText id="login" value="#{login.user.nomUtilisateur}" a:placeholder="Login" />
-                    <h:inputText id="mdp" value="#{login.user.motDepasse}"  a:placeholder="Mot de passe"  />
-                    <h:commandButton value="Valider" action="#{login.login()}"/>
+                    <h:outputLabel value="#{msg['text.identifier']}" for="login"/>
+                    <h:inputText id="login" value="#{login.user.nomUtilisateur}"/>
+                    <h:inputText id="mdp" value="#{login.user.motDepasse}"/>
+                    <h:commandButton value="#{msg['boutton.identificaction']}" action="#{login.login()}"/>
                 </h:form>
                 <p style="color : red">
                     <h:messages />
                     <h:outputText value="#{login.message}" />
                 </p>
+                <h:panelGrid columns="2">
+
+                    <p>#{msg['label.menu.langue']} :</p>
+		<h:selectOneMenu value="#{languageMBean.localeCode}" onchange="submit()"
+			valueChangeListener="#{languageMBean.countryLocaleCodeChanged}">
+   			<f:selectItems value="#{languageMBean.countriesInMap}" />
+   		</h:selectOneMenu>
+
+                </h:panelGrid>
             </div>
         </div>
+        </h:form>
     </h:body>
 
 </html>
