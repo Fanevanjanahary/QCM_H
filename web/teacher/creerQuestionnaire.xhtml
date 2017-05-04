@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../WEB-INF/templates/defaultTemplate.xhtml">
+
+            <ui:define name="meta">
+                <f:metadata>  
+                    <f:viewParam name="idUser" value="#{login.idUser}" />  
+                    <f:viewParam name="idUser" value="#{createQuestionnaire.idUtilisateur}"  />  
+                    <f:viewParam name="idQuestionnaire" value="#{createQuestionnaire.idQuestionnaire}" />  
+
+                    <f:viewAction action="#{createQuestionnaire.init()}"/>
+
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+
+
+                    <h:form>
+                        <h1><h:outputText value="Nouveau questionnaire"/></h1>
+                        <h:panelGrid columns="2">
+
+                            <h:outputLabel value="Intitulé du questionnaire:" for="textIntro" />
+                            <h:inputText id="textIntro" value="#{createQuestionnaire.questionnaire.textIntro}" title="TextIntro" />
+                            <h:outputLabel value="Mots clés séparés par un  '/' :" for="cles" />
+                            <h:inputText id="cles" value="#{createQuestionnaire.questionnaire.motCle}" title="TextIntro" />
+                            
+                        </h:panelGrid>
+                        <h:commandButton action ="#{createQuestionnaire.creer()}" value="Cr&eacute;er" />
+                    </h:form>
+                </f:view>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -52,7 +52,7 @@ public class EtudiantMBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        setEtudiants(um.findAll());
+        setEtudiants(um.findStudent());
     }
     
 }

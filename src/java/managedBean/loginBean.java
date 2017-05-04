@@ -53,15 +53,20 @@ public class loginBean {
         }
         return "student/index?faces-redirect=true&amp;idUser=" + user.getId();
     }
+    
+    public String logout(){
+        return "/login";
+    }
 
     public void initUser() {
         //System.out.println("managedBean.loginBean.initUser()");
         //Util.addFlashInfoMessage("Je passe");
         //user = um.findById(idUser);       
+                System.out.println("je passe");
+
     }
     
     public void test(){
-        System.out.println("je passe");
     }
 
     /**

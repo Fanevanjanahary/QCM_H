@@ -27,8 +27,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "UTILISATEUR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Utilisateur.count", query = "SELECT count(u) FROM Utilisateur u"),
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u"),
+    @NamedQuery(name = "Utilisateur.count", query = "SELECT count(u) FROM Utilisateur u")
+    ,
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u")
+    ,
+        @NamedQuery(name = "Utilisateur.findStudents", query = "SELECT u FROM Utilisateur u WHERE u.type = 'Etudiant' ")
+    ,
+
     @NamedQuery(name = "Utilisateur.find", query = "SELECT u FROM Utilisateur u WHERE u.nomUtilisateur = :utilisateur AND u.motDepasse = :motDePasse")}
 )
 public class Utilisateur implements Serializable {
@@ -39,12 +44,12 @@ public class Utilisateur implements Serializable {
     private Long id;
     private String nomUtilisateur;
     private String motDepasse;
-    
+
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     private List<Questionnaire> lesQuestionnaires;
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     private List<Notes> lesNotes;
-    @OneToOne(mappedBy="utilisateur", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
     private Personne personne;
     private String type;
 
@@ -59,7 +64,7 @@ public class Utilisateur implements Serializable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String nomUtilisateur, String motDepasse, Personne personne,String type, List<Questionnaire> lesQuestionnaires, List<Notes> lesNotes) {
+    public Utilisateur(String nomUtilisateur, String motDepasse, Personne personne, String type, List<Questionnaire> lesQuestionnaires, List<Notes> lesNotes) {
         this.nomUtilisateur = nomUtilisateur;
         this.motDepasse = motDepasse;
         this.personne = personne;
@@ -67,8 +72,8 @@ public class Utilisateur implements Serializable {
         this.lesQuestionnaires = lesQuestionnaires;
         this.lesNotes = lesNotes;
     }
-    
-    public Boolean isProfesseur(){
+
+    public Boolean isProfesseur() {
         return "Enseignant".equals(type);
     }
 
@@ -104,7 +109,6 @@ public class Utilisateur implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    
 
     @Override
     public int hashCode() {
@@ -126,6 +130,4 @@ public class Utilisateur implements Serializable {
         return true;
     }
 
-    
-    
 }

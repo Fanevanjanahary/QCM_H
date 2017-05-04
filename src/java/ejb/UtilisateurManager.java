@@ -37,6 +37,12 @@ public class UtilisateurManager {
         return query.getResultList();
     }
     
+    public List<Utilisateur> findStudent()
+    {
+        Query query = em.createNamedQuery("Utilisateur.findStudents");
+        return query.getResultList();
+    }
+    
     public List<Utilisateur> find(Utilisateur u)
     {
         Query query = em.createNamedQuery("Utilisateur.find")
@@ -49,7 +55,6 @@ public class UtilisateurManager {
     
     public Utilisateur findById(Long id){
         Utilisateur u=em.find(Utilisateur.class, id);
-        System.out.println(u.getLesNotes().size());
         return u;
     }
 

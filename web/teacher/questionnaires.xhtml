@@ -2,8 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata >  
+        <f:viewParam name="idUser" value="#{login.idUser}" required="true" />  
+        <f:viewAction action="#{login.initUser()}"/>  
+    </f:metadata>
     <body>
 
         <ui:composition template="./../WEB-INF/templates/defaultTemplate.xhtml">
@@ -12,7 +16,7 @@
                 <h2>Les questionnaires</h2>
                 <ul>
                     <ui:repeat value="#{questionnaireMBean.questionnaire}" var="questionnaire" >
-                    <li><h:link outcome="/teacher/questionnaireDetail?faces-redirect=true&amp;includeViewParams=true&amp;idQuestionnaire=#{questionnaire.id}" value="#{questionnaire.textIntro}"/></li>             
+                        <li><h:link outcome="/teacher/questionnaireDetail?faces-redirect=true&amp;includeViewParams=true&amp;idQuestionnaire=#{questionnaire.id}" value="#{questionnaire.textIntro}"/></li>             
                     </ui:repeat>
                 </ul>
             </ui:define>

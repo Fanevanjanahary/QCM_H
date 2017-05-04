@@ -8,6 +8,7 @@ package ejb;
 import entities.Question;
 import entities.Questionnaire;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,7 +23,7 @@ public class QuestionManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
-
+    
     public void creerQuestion(Question q) {
         em.persist(q);
     }
@@ -67,4 +68,5 @@ public class QuestionManager {
 
         return query.getResultList();
     }
+
 }

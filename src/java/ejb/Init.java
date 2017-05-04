@@ -50,7 +50,7 @@ public class Init {
             Utilisateur u2 = new Utilisateur("faneva", "faneva", p2,"Etudiant", null, null);
             Utilisateur u3 = new Utilisateur("andry", "andry", p4,"Etudiant", null, null);
             Utilisateur u4 = new Utilisateur("ylias", "ylias", p3,"Etudiant", null, null);
-            Utilisateur u5 = new Utilisateur("michel", "michel", p5,"Enseignatn", null, null);
+            Utilisateur u5 = new Utilisateur("michel", "michel", p5,"Enseignant", null, null);
            
              Question q1_1 = new Question(2, "Combien de couches au moins dans une application Java EE ?", "JEE", null, null);
               Reponse r11_1 = new Reponse("Vrai", q1_1, Boolean.TRUE);

@@ -3,13 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/student/passage.xhtml</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/ReponseManager.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/QuestionnaireManager.java</file>
             <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/entities/Utilisateur.java</file>
-            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/entities/Notes.java</file>
             <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/NotesManager.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/teacher/creerQuestionnaire.xhtml</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/QuestionManager.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/Init.java</file>
             <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/managedBean/DetailEtudiantMBean.java</file>
             <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/teacher/etudiantDetail.xhtml</file>
             <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/teacher/etudiants.xhtml</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/student/passage.xhtml</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/MesQuestionsManager.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/web/teacher/creerQuestion.xhtml</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/entities/Notes.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/managedBean/QuestionMBean.java</file>
+            <file>file:/run/media/madlord/Projets/java/Grin_qcm/QCM_H/src/java/ejb/UtilisateurManager.java</file>
         </group>
     </open-files>
 </project-private>

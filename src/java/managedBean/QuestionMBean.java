@@ -22,9 +22,13 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 public class QuestionMBean implements Serializable{
     private String motCle;
+    private Question question;
+    private Long idQuestionnaire;
     private List<Question> listQuestion;
     @EJB
     private QuestionManager questionManager;
+    
+    
 
     public QuestionMBean() {
     }
@@ -33,7 +37,7 @@ public class QuestionMBean implements Serializable{
     {
         questionManager.creerQuestion(q);
     }
-    public List<Question> getQuestion()
+    public List<Question> getQuestions()
     {
          if(listQuestion==null){
                listQuestion = questionManager.findAll();
@@ -53,4 +57,35 @@ public class QuestionMBean implements Serializable{
         String[] mots = motCle.split(" ");
         return questionManager.find(mots);       
     }
+    
+
+    /**
+     * @return the question
+     */
+    public Question getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    /**
+     * @return the idQuestionnaire
+     */
+    public Long getIdQuestionnaire() {
+        return idQuestionnaire;
+    }
+
+    /**
+     * @param idQuestionnaire the idQuestionnaire to set
+     */
+    public void setIdQuestionnaire(Long idQuestionnaire) {
+        this.idQuestionnaire = idQuestionnaire;
+    }
+    
+    
 }

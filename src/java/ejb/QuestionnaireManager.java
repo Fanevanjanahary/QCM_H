@@ -8,6 +8,7 @@ package ejb;
 import entities.Questionnaire;
 import java.util.List;
 import javax.annotation.sql.DataSourceDefinition;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,6 +33,8 @@ public class QuestionnaireManager {
 
     @PersistenceContext(unitName = "QCM_HPU")
     private EntityManager em;
+    
+    
 
     public void creerQuestionnaire(Questionnaire questionnaire) {
         em.persist(questionnaire);

@@ -3,10 +3,12 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <ul>
-        <li><h:link outcome="/teacher/questionnaires" value="Questionnaires"/></li>  
-        <li><h:link outcome="/teacher/etudiants" value="Etudiants"/></li>
+        <li><h:link outcome="/teacher/questionnaires?faces-redirect=true&amp;includeViewParams=true&amp;&amp;idUser=#{login.idUser}" value="Questionnaires"/></li>  
+        <li><h:link outcome="/teacher/etudiants?faces-redirect=true&amp;includeViewParams=true&amp;idUser=#{login.idUser}" value="Etudiants"/></li>
+        <li><h:link outcome="#{login.logout()}" value="D&eacute;connection"/></li>
+
     </ul>
 </ui:composition>
 
