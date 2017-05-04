@@ -28,8 +28,8 @@
 
                 <h:form>
                     <h:outputLabel value="#{msg['text.identifier']}" for="login"/>
-                    <h:inputText id="login" value="#{login.user.nomUtilisateur}"/>
-                    <h:inputText id="mdp" value="#{login.user.motDepasse}"/>
+                    <h:inputText id="login" value="#{login.user.nomUtilisateur}" a:placeholder="Login" />
+                    <h:inputText id="mdp" value="#{login.user.motDepasse}" a:placeholder="Mot de passe" />
                     <h:commandButton value="#{msg['boutton.identificaction']}" action="#{login.login()}"/>
                 </h:form>
                 <p style="color : red">
